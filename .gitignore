@@ -1,0 +1,40 @@
+## Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+*.log
+
+## User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Visual Studio
+.vs/
+*.vcxproj.user
+*.csproj.user
+
+## Test results
+[Tt]est[Rr]esult*/
+*.coverage
+*.coveragexml
+
+## NuGet
+*.nupkg
+**/packages/*
+!**/packages/build/
+
+## Rider
+.idea/
+*.sln.iml
+
+## VS Code
+.vscode/
+
+## Others
+*.dbmdl
+*.pfx
+*.publishsettings
+*.DotSettings.user
+_ReSharper*/

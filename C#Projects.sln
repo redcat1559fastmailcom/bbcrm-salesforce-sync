@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intro", "Intro\Intro.csproj", "{A885DA45-C1D3-4DF5-9665-F192BE691AA9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C#Projects", "C#Projects", "{44EB58AE-DD92-9E90-99BA-729BA5F77A6A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrays", "Arrays\Arrays.csproj", "{3F336C0B-1C03-4E7D-A2A1-A88CA3A3D5B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Literals", "Literals\Literals.csproj", "{5AA51130-D058-4630-B99A-66B2DECE7639}"
@@ -88,10 +86,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{5AA51130-D058-4630-B99A-66B2DECE7639} = {44EB58AE-DD92-9E90-99BA-729BA5F77A6A}
-		{41FEEBB9-3BA7-4064-AC85-E54489489DF4} = {44EB58AE-DD92-9E90-99BA-729BA5F77A6A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9D68D721-6F0B-4182-B74A-0F1919544A55}

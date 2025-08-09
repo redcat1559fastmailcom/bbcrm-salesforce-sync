@@ -33,7 +33,6 @@
 .vscode/
 
 ## Others
-*.jfm
 *.dbmdl
 *.pfx
 *.publishsettings

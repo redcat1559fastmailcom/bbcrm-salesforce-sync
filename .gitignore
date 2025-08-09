@@ -38,3 +38,4 @@
 *.publishsettings
 *.DotSettings.user
 _ReSharper*/
+*.jfm

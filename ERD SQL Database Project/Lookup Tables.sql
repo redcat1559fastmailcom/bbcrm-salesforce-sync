@@ -1,0 +1,17 @@
+﻿-- REVENUE_TYPE
+CREATE TABLE REVENUE_TYPE (
+    ID INT PRIMARY KEY,
+    NAME NVARCHAR(100) -- e.g., 'Donation', 'Grant', 'Membership'
+);
+
+-- INTERACTION_TYPE
+CREATE TABLE INTERACTION_TYPE (
+    ID INT PRIMARY KEY,
+    NAME NVARCHAR(100) -- e.g., 'Phone Call', 'Email', 'Meeting'
+);
+
+-- EVENT_CATEGORY
+CREATE TABLE EVENT_CATEGORY (
+    ID INT PRIMARY KEY,
+    NAME NVARCHAR(100) -- e.g., 'Fundraiser', 'Volunteer', 'Conference'
+);

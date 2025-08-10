@@ -1,109 +1,85 @@
 ﻿import pyodbc
-import random
 import uuid
-from datetime import datetime, timedelta
+from faker import Faker
+from random import choice, randint
+
+fake = Faker()
 
 # Connect to SQL Server
 conn = pyodbc.connect(
-    r'DRIVER={ODBC Driver 17 for SQL Server};'
-    r'SERVER=LOGISMOS;'
-    r'DATABASE=BBCRM;'
-    r'Trusted_Connection=yes;'
+    "DRIVER={SQL Server};"
+    "SERVER=LOGISMOS;"
+    "DATABASE=BBCRM;"
+    "Trusted_Connection=yes;"
 )
+conn.autocommit = False
 cursor = conn.cursor()
 
-# Sample data pools
-first_names = ["Alice", "Bob", "Carol", "David", "Eve", "Frank", "Grace", "Hank"]
-last_names = ["Johnson", "Smith", "Lee", "Brown", "Davis", "Miller", "Wilson", "Taylor"]
-streets = ["Elm St", "Oak Ave", "Maple Rd", "Pine Ln", "Cedar Ct"]
-cities = ["Raleigh", "Charlotte", "Durham", "Winston-Salem"]
-states = ["NC", "SC", "VA"]
-types = ["Individual", "Organization"]
+try:
+    # Step 1: Insert Address Type Codes
+    address_type_map = {}
+    address_types = ['Home', 'Business', 'Billing', 'Seasonal']
 
-# Lookup values
-interaction_types = {1: "Phone Call", 2: "Visit"}
-revenue_types = {1: "Donation", 2: "Grant"}
-event_categories = {1: "Fundraiser", 2: "Education"}
+    for desc in address_types:
+        type_id = uuid.uuid4()
+        address_type_map[desc] = type_id
+        cursor.execute("""
+            INSERT INTO BBCRM_Address_Type (ID, Type_Description, DateChanged)
+            VALUES (?, ?, ?)
+        """, str(type_id), desc, fake.date_time_this_decade())
 
-def random_date(start_days_ago=365, end_days_ago=0):
-    start = datetime.now() - timedelta(days=start_days_ago)
-    end = datetime.now() - timedelta(days=end_days_ago)
-    return (start + (end - start) * random.random()).strftime('%Y-%m-%d')
+    # Step 2: Insert Interaction Type Codes
+    interaction_type_map = {}
+    interaction_types = ['Phone Call', 'Email', 'Meeting', 'Text Message', 'Postal Mail']
 
-# Insert lookup values
-def insert_lookup(table, values):
-    for id, name in values.items():
-        cursor.execute(f"INSERT INTO {table} (ID, NAME) VALUES (?, ?)", (uuid.UUID(int=id), name))
+    for desc in interaction_types:
+        type_id = uuid.uuid4()
+        interaction_type_map[desc] = type_id
+        cursor.execute("""
+            INSERT INTO BBCRM_Interaction_Type (ID, Type_Description, DateChanged)
+            VALUES (?, ?, ?)
+        """, str(type_id), desc, fake.date_time_this_decade())
 
-insert_lookup("REVENUE_TYPE", revenue_types)
-insert_lookup("INTERACTION_TYPE", interaction_types)
-insert_lookup("EVENT_CATEGORY", event_categories)
+    # Step 3: Insert Constituents
+    constituent_ids = []
+    for _ in range(1000):
+        cid = uuid.uuid4()
+        constituent_ids.append(cid)
+        cursor.execute("""
+            INSERT INTO BBCRM_Constituent (BBCRM_ID, FirstName, LastName, Email, DateChanged)
+            VALUES (?, ?, ?, ?, ?)
+        """, str(cid), fake.first_name(), fake.last_name(), fake.email(), fake.date_time_this_decade())
 
-# Store GUIDs for constituents
-constituents = []
+    # Step 4: Insert Addresses (~1–4 per constituent)
+    for cid in constituent_ids:
+        for _ in range(randint(1, 4)):
+            addr_type = choice(address_types)
+            cursor.execute("""
+                INSERT INTO BBCRM_Address (Address_ID, Constituent_ID, Street, City, [State], ZIP, Address_Type_Code, DateChanged)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """, str(uuid.uuid4()), str(cid),
+                 fake.street_address(), fake.city(), fake.state(), fake.zipcode(),
+                 str(address_type_map[addr_type]), fake.date_time_this_year())
 
-# Insert constituents
-for _ in range(100):
-    cid = str(uuid.uuid4())
-    constituents.append(cid)
-    fn = random.choice(first_names)
-    ln = random.choice(last_names)
-    t = random.choice(types)
-    cursor.execute(
-        "INSERT INTO CONSTITUENT (ID, FIRSTNAME, LASTNAME, TYPE) VALUES (?, ?, ?, ?)",
-        (cid, fn, ln, t)
-    )
+    # Step 5: Insert Interactions (~2–6 per constituent)
+    for cid in constituent_ids:
+        for _ in range(randint(2, 6)):
+            interaction_type = choice(interaction_types)
+            cursor.execute("""
+                INSERT INTO BBCRM_Interaction (Interaction_ID, Constituent_ID, Interaction_Date, Notes, Interaction_Type_Code, DateChanged)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """, str(uuid.uuid4()), str(cid),
+                 fake.date_time_this_year(), fake.paragraph(nb_sentences=2),
+                 str(interaction_type_map[interaction_type]), fake.date_time_this_year())
 
-# Insert addresses
-for cid in constituents:
-    aid = str(uuid.uuid4())
-    street = f"{random.randint(100,999)} {random.choice(streets)}"
-    city = random.choice(cities)
-    state = random.choice(states)
-    zip_code = str(random.randint(27000, 27999))
-    cursor.execute(
-        "INSERT INTO ADDRESS (ID, CONSTITUENTID, STREET, CITY, STATE, ZIP) VALUES (?, ?, ?, ?, ?, ?)",
-        (aid, cid, street, city, state, zip_code)
-    )
+    # Commit if all inserts succeed
+    conn.commit()
+    print("✅ Mock BBCRM data inserted successfully.")
 
-# Insert revenue
-for cid in constituents:
-    rid = str(uuid.uuid4())
-    amount = round(random.uniform(50, 5000), 2)
-    date = random_date()
-    type_id = uuid.UUID(int=random.choice(list(revenue_types.keys())))
-    cursor.execute(
-        "INSERT INTO REVENUE (ID, CONSTITUENTID, REVENUE_TYPE_ID, AMOUNT, DATE_RECEIVED) VALUES (?, ?, ?, ?, ?)",
-        (rid, cid, type_id, amount, date)
-    )
+except Exception as e:
+    conn.rollback()
+    print("❌ Error occurred during data insertion:", e)
 
-# Insert interactions
-for cid in constituents:
-    iid = str(uuid.uuid4())
-    date = random_date()
-    type_id = uuid.UUID(int=random.choice(list(interaction_types.keys())))
-    notes = f"{interaction_types[type_id.int]} with constituent"
-    cursor.execute(
-        "INSERT INTO INTERACTION (ID, CONSTITUENTID, INTERACTION_TYPE_ID, DATE_OCCURRED, NOTES) VALUES (?, ?, ?, ?, ?)",
-        (iid, cid, type_id, date, notes)
-    )
-
-# Insert events
-for _ in range(100):
-    eid = str(uuid.uuid4())
-    name = f"{random.choice(['Spring', 'Fall', 'Annual'])} {random.choice(['Gala', 'Workshop', 'Summit'])}"
-    cat_id = uuid.UUID(int=random.choice(list(event_categories.keys())))
-    date = random_date()
-    location = f"{random.choice(cities)} Convention Center"
-    cursor.execute(
-        "INSERT INTO EVENT (ID, EVENT_CATEGORY_ID, NAME, EVENT_DATE, LOCATION) VALUES (?, ?, ?, ?, ?)",
-        (eid, cat_id, name, date, location)
-    )
-
-# Commit all inserts
-conn.commit()
-print("✅ All rows inserted with GUIDs.")
-
-# Clean up
-cursor.close()
-conn.close()
+finally:
+    cursor.close()
+    conn.close()

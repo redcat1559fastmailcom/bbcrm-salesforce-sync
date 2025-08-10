@@ -59,7 +59,7 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core Tables.sql" />
+    <None Include="BBCRM_Mock_Tables.sql" />
     <None Include="Lookup Tables.sql" />
   </ItemGroup>
 </Project>

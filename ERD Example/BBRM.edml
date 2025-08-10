@@ -1,0 +1,485 @@
+﻿<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ERDSQLDatabaseProjectModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ERDSQLDatabaseProjectEntitiesStoreContainer">
+          <EntitySet Name="ADDRESSES" EntityType="ERDSQLDatabaseProjectModel.Store.ADDRESS" store:Type="Tables" Schema="dbo" Table="ADDRESS" />
+          <EntitySet Name="CONSTITUENTs" EntityType="ERDSQLDatabaseProjectModel.Store.CONSTITUENT" store:Type="Tables" Schema="dbo" Table="CONSTITUENT" />
+          <EntitySet Name="EVENTs" EntityType="ERDSQLDatabaseProjectModel.Store.EVENT" store:Type="Tables" Schema="dbo" Table="EVENT" />
+          <EntitySet Name="EVENT_CATEGORIES" EntityType="ERDSQLDatabaseProjectModel.Store.EVENT_CATEGORY" store:Type="Tables" Schema="dbo" Table="EVENT_CATEGORY" />
+          <EntitySet Name="INTERACTIONs" EntityType="ERDSQLDatabaseProjectModel.Store.INTERACTION" store:Type="Tables" Schema="dbo" Table="INTERACTION" />
+          <EntitySet Name="INTERACTION_TYPEs" EntityType="ERDSQLDatabaseProjectModel.Store.INTERACTION_TYPE" store:Type="Tables" Schema="dbo" Table="INTERACTION_TYPE" />
+          <EntitySet Name="REVENUEs" EntityType="ERDSQLDatabaseProjectModel.Store.REVENUE" store:Type="Tables" Schema="dbo" Table="REVENUE" />
+          <EntitySet Name="REVENUE_TYPEs" EntityType="ERDSQLDatabaseProjectModel.Store.REVENUE_TYPE" store:Type="Tables" Schema="dbo" Table="REVENUE_TYPE" />
+          <AssociationSet Name="FK__ADDRESS__CONSTIT__3F466844" Association="ERDSQLDatabaseProjectModel.Store.FK__ADDRESS__CONSTIT__3F466844">
+            <End Role="CONSTITUENT" EntitySet="CONSTITUENTs" />
+            <End Role="ADDRESS" EntitySet="ADDRESSES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EVENT__EVENT_CAT__49C3F6B7" Association="ERDSQLDatabaseProjectModel.Store.FK__EVENT__EVENT_CAT__49C3F6B7">
+            <End Role="EVENT_CATEGORY" EntitySet="EVENT_CATEGORIES" />
+            <End Role="EVENT" EntitySet="EVENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INTERACTI__CONST__45F365D3" Association="ERDSQLDatabaseProjectModel.Store.FK__INTERACTI__CONST__45F365D3">
+            <End Role="CONSTITUENT" EntitySet="CONSTITUENTs" />
+            <End Role="INTERACTION" EntitySet="INTERACTIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INTERACTI__INTER__46E78A0C" Association="ERDSQLDatabaseProjectModel.Store.FK__INTERACTI__INTER__46E78A0C">
+            <End Role="INTERACTION_TYPE" EntitySet="INTERACTION_TYPEs" />
+            <End Role="INTERACTION" EntitySet="INTERACTIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__REVENUE__CONSTIT__4222D4EF" Association="ERDSQLDatabaseProjectModel.Store.FK__REVENUE__CONSTIT__4222D4EF">
+            <End Role="CONSTITUENT" EntitySet="CONSTITUENTs" />
+            <End Role="REVENUE" EntitySet="REVENUEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__REVENUE__REVENUE__4316F928" Association="ERDSQLDatabaseProjectModel.Store.FK__REVENUE__REVENUE__4316F928">
+            <End Role="REVENUE_TYPE" EntitySet="REVENUE_TYPEs" />
+            <End Role="REVENUE" EntitySet="REVENUEs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ADDRESS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CONSTITUENTID" Type="uniqueidentifier" />
+          <Property Name="STREET" Type="nvarchar" MaxLength="200" />
+          <Property Name="CITY" Type="nvarchar" MaxLength="100" />
+          <Property Name="STATE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZIP" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CONSTITUENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="LASTNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="TYPE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EVENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EVENT_CATEGORY_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="EVENT_DATE" Type="date" />
+          <Property Name="LOCATION" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="EVENT_CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="INTERACTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CONSTITUENTID" Type="uniqueidentifier" />
+          <Property Name="INTERACTION_TYPE_ID" Type="int" />
+          <Property Name="DATE_OCCURRED" Type="date" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="INTERACTION_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="REVENUE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CONSTITUENTID" Type="uniqueidentifier" />
+          <Property Name="REVENUE_TYPE_ID" Type="int" />
+          <Property Name="AMOUNT" Type="money" />
+          <Property Name="DATE_RECEIVED" Type="date" />
+        </EntityType>
+        <EntityType Name="REVENUE_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__ADDRESS__CONSTIT__3F466844">
+          <End Role="CONSTITUENT" Type="ERDSQLDatabaseProjectModel.Store.CONSTITUENT" Multiplicity="0..1" />
+          <End Role="ADDRESS" Type="ERDSQLDatabaseProjectModel.Store.ADDRESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSTITUENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ADDRESS">
+              <PropertyRef Name="CONSTITUENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EVENT__EVENT_CAT__49C3F6B7">
+          <End Role="EVENT_CATEGORY" Type="ERDSQLDatabaseProjectModel.Store.EVENT_CATEGORY" Multiplicity="0..1" />
+          <End Role="EVENT" Type="ERDSQLDatabaseProjectModel.Store.EVENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EVENT_CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EVENT">
+              <PropertyRef Name="EVENT_CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INTERACTI__CONST__45F365D3">
+          <End Role="CONSTITUENT" Type="ERDSQLDatabaseProjectModel.Store.CONSTITUENT" Multiplicity="0..1" />
+          <End Role="INTERACTION" Type="ERDSQLDatabaseProjectModel.Store.INTERACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSTITUENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="INTERACTION">
+              <PropertyRef Name="CONSTITUENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INTERACTI__INTER__46E78A0C">
+          <End Role="INTERACTION_TYPE" Type="ERDSQLDatabaseProjectModel.Store.INTERACTION_TYPE" Multiplicity="0..1" />
+          <End Role="INTERACTION" Type="ERDSQLDatabaseProjectModel.Store.INTERACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INTERACTION_TYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="INTERACTION">
+              <PropertyRef Name="INTERACTION_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__REVENUE__CONSTIT__4222D4EF">
+          <End Role="CONSTITUENT" Type="ERDSQLDatabaseProjectModel.Store.CONSTITUENT" Multiplicity="0..1" />
+          <End Role="REVENUE" Type="ERDSQLDatabaseProjectModel.Store.REVENUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSTITUENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REVENUE">
+              <PropertyRef Name="CONSTITUENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__REVENUE__REVENUE__4316F928">
+          <End Role="REVENUE_TYPE" Type="ERDSQLDatabaseProjectModel.Store.REVENUE_TYPE" Multiplicity="0..1" />
+          <End Role="REVENUE" Type="ERDSQLDatabaseProjectModel.Store.REVENUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REVENUE_TYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REVENUE">
+              <PropertyRef Name="REVENUE_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ERDSQLDatabaseProjectModel" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ERDSQLDatabaseProjectEntities" annotation:LazyLoadingEnabled="true" ed:Guid="cd05934e-79bc-430d-ad33-0e3ce974f715">
+          <EntitySet Name="ADDRESSES" EntityType="ERDSQLDatabaseProjectModel.ADDRESS" />
+          <EntitySet Name="CONSTITUENTs" EntityType="ERDSQLDatabaseProjectModel.CONSTITUENT" />
+          <EntitySet Name="EVENTs" EntityType="ERDSQLDatabaseProjectModel.EVENT" />
+          <EntitySet Name="EVENTCATEGORIES" EntityType="ERDSQLDatabaseProjectModel.EVENTCATEGORY" />
+          <EntitySet Name="INTERACTIONs" EntityType="ERDSQLDatabaseProjectModel.INTERACTION" />
+          <EntitySet Name="INTERACTIONTYPEs" EntityType="ERDSQLDatabaseProjectModel.INTERACTIONTYPE" />
+          <EntitySet Name="REVENUEs" EntityType="ERDSQLDatabaseProjectModel.REVENUE" />
+          <EntitySet Name="REVENUETYPEs" EntityType="ERDSQLDatabaseProjectModel.REVENUETYPE" />
+          <AssociationSet Name="FK__ADDRESS__CONSTIT__3F466844Set" Association="ERDSQLDatabaseProjectModel.FK__ADDRESS__CONSTIT__3F466844">
+            <End Role="CONSTITUENT" EntitySet="CONSTITUENTs" />
+            <End Role="ADDRESSES" EntitySet="ADDRESSES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EVENT__EVENT_CAT__49C3F6B7Set" Association="ERDSQLDatabaseProjectModel.FK__EVENT__EVENT_CAT__49C3F6B7">
+            <End Role="EVENTCATEGORY" EntitySet="EVENTCATEGORIES" />
+            <End Role="EVENTs" EntitySet="EVENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INTERACTI__CONST__45F365D3Set" Association="ERDSQLDatabaseProjectModel.FK__INTERACTI__CONST__45F365D3">
+            <End Role="CONSTITUENT" EntitySet="CONSTITUENTs" />
+            <End Role="INTERACTIONs" EntitySet="INTERACTIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INTERACTI__INTER__46E78A0CSet" Association="ERDSQLDatabaseProjectModel.FK__INTERACTI__INTER__46E78A0C">
+            <End Role="INTERACTIONTYPE" EntitySet="INTERACTIONTYPEs" />
+            <End Role="INTERACTIONs" EntitySet="INTERACTIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__REVENUE__CONSTIT__4222D4EFSet" Association="ERDSQLDatabaseProjectModel.FK__REVENUE__CONSTIT__4222D4EF">
+            <End Role="CONSTITUENT" EntitySet="CONSTITUENTs" />
+            <End Role="REVENUEs" EntitySet="REVENUEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__REVENUE__REVENUE__4316F928Set" Association="ERDSQLDatabaseProjectModel.FK__REVENUE__REVENUE__4316F928">
+            <End Role="REVENUETYPE" EntitySet="REVENUETYPEs" />
+            <End Role="REVENUEs" EntitySet="REVENUEs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ADDRESS" ed:Guid="18c0aeaa-8b55-4835-b557-a70cf83f7c45">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" ed:ValidateRequired="true" ed:Guid="49965cbc-2974-4a09-ac32-8763be2584f4" />
+          <Property Name="CONSTITUENTID" Type="Guid" ed:ValidateRequired="false" ed:Guid="866ad6d6-748e-4954-b12d-41f91e6ab9a6" />
+          <Property Name="STREET" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="608f011b-ff08-4cab-b35c-c4b73736b3d9" />
+          <Property Name="CITY" Type="String" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="c7dd8c35-d303-45a3-affe-e42bf0d41df6" />
+          <Property Name="STATE" Type="String" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="943c5349-93d5-47bb-b507-bccac73c7860" />
+          <Property Name="ZIP" Type="String" MaxLength="20" Unicode="true" ed:ValidateMaxLength="20" ed:ValidateRequired="false" ed:Guid="8c39e990-0cf7-4bef-9869-4c3884288eb9" />
+          <NavigationProperty Name="CONSTITUENT" Relationship="ERDSQLDatabaseProjectModel.FK__ADDRESS__CONSTIT__3F466844" FromRole="ADDRESSES" ToRole="CONSTITUENT" ed:Guid="f18ed5dd-b49b-4c3f-a11f-154859de8525" />
+        </EntityType>
+        <EntityType Name="CONSTITUENT" ed:Guid="c430f4e1-2dd9-4bd6-a523-5833b222a5e4">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" ed:ValidateRequired="true" ed:Guid="759c0f7b-ef32-4206-a5e0-edfd90379992" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="0eb7cb47-b5a5-475b-b732-f0d4f48befe2" />
+          <Property Name="LASTNAME" Type="String" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="c1e61dcf-b6d2-489b-bcdf-b994b6201397" />
+          <Property Name="TYPE" Type="String" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="0fdb9411-f028-4b43-a05d-759b7c7c5632" />
+          <NavigationProperty Name="ADDRESSES" Relationship="ERDSQLDatabaseProjectModel.FK__ADDRESS__CONSTIT__3F466844" FromRole="CONSTITUENT" ToRole="ADDRESSES" ed:Guid="04a763c6-66dd-4d10-b23a-427d2c438868" />
+          <NavigationProperty Name="INTERACTIONs" Relationship="ERDSQLDatabaseProjectModel.FK__INTERACTI__CONST__45F365D3" FromRole="CONSTITUENT" ToRole="INTERACTIONs" ed:Guid="ca77fd57-5556-49db-a45d-c52bf0a34910" />
+          <NavigationProperty Name="REVENUEs" Relationship="ERDSQLDatabaseProjectModel.FK__REVENUE__CONSTIT__4222D4EF" FromRole="CONSTITUENT" ToRole="REVENUEs" ed:Guid="33a9f0fe-1fe1-4a38-b7c3-2ac795fb1ba2" />
+        </EntityType>
+        <EntityType Name="EVENT" ed:Guid="5af4ca6f-797f-4cf3-9e7f-c47d89cbe7aa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" ed:ValidateRequired="true" ed:Guid="2d88bd74-c7ac-45dd-ac05-0f94fd06db8d" />
+          <Property Name="EVENTCATEGORYID" Type="Int32" ed:ValidateRequired="false" ed:Guid="a98e6019-d75c-4d82-8c88-5eedac600d9c" />
+          <Property Name="NAME" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="699941af-6762-4738-9f74-b90f86381132" />
+          <Property Name="EVENTDATE" Type="DateTime" ed:ValidateRequired="false" ed:Guid="f484302c-cf69-49b6-9343-e0deaf657781" />
+          <Property Name="LOCATION" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="e6014d30-c9ad-4d03-aa24-b044ec99df28" />
+          <NavigationProperty Name="EVENTCATEGORY" Relationship="ERDSQLDatabaseProjectModel.FK__EVENT__EVENT_CAT__49C3F6B7" FromRole="EVENTs" ToRole="EVENTCATEGORY" ed:Guid="ddb01d12-2e12-4ba3-af82-53d75bd9807e" />
+        </EntityType>
+        <EntityType Name="EVENTCATEGORY" ed:Guid="520ad915-2132-4b36-ac65-403456375589">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="e65d0972-6061-4d20-92da-2a38c12154fa" />
+          <Property Name="NAME" Type="String" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="de4dc3ae-f780-40b4-83b2-905cd759ae68" />
+          <NavigationProperty Name="EVENTs" Relationship="ERDSQLDatabaseProjectModel.FK__EVENT__EVENT_CAT__49C3F6B7" FromRole="EVENTCATEGORY" ToRole="EVENTs" ed:Guid="299d5b42-25cd-4171-a3ca-98f8e061ba40" />
+        </EntityType>
+        <EntityType Name="INTERACTION" ed:Guid="a76893e9-fb8e-49c5-a8ce-697088016aa0">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" ed:ValidateRequired="true" ed:Guid="ec9931ec-cb78-4005-9640-d0921d0d346d" />
+          <Property Name="CONSTITUENTID" Type="Guid" ed:ValidateRequired="false" ed:Guid="7e9b4d5d-141b-43cb-9920-f25b32b0cf4d" />
+          <Property Name="INTERACTIONTYPEID" Type="Int32" ed:ValidateRequired="false" ed:Guid="c937b054-a223-4d91-ac56-5e72564ec1c5" />
+          <Property Name="DATEOCCURRED" Type="DateTime" ed:ValidateRequired="false" ed:Guid="5c6d31b2-3ae3-4463-bddf-2974eb603436" />
+          <Property Name="NOTES" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="404fa7d2-be64-405f-864a-879a28f3d800" />
+          <NavigationProperty Name="CONSTITUENT" Relationship="ERDSQLDatabaseProjectModel.FK__INTERACTI__CONST__45F365D3" FromRole="INTERACTIONs" ToRole="CONSTITUENT" ed:Guid="5418cb8c-ebb0-4538-ac40-7289fbfa23af" />
+          <NavigationProperty Name="INTERACTIONTYPE" Relationship="ERDSQLDatabaseProjectModel.FK__INTERACTI__INTER__46E78A0C" FromRole="INTERACTIONs" ToRole="INTERACTIONTYPE" ed:Guid="cb98f0c6-60c3-4631-9954-2a98cd8badb8" />
+        </EntityType>
+        <EntityType Name="INTERACTIONTYPE" ed:Guid="1a6121a3-2b28-4f24-b16b-18787d7301d9">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="179c0799-09fe-44c3-9c23-a04daec8f1e0" />
+          <Property Name="NAME" Type="String" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="839b4ada-fcfe-4a91-94c2-18f751c3f24d" />
+          <NavigationProperty Name="INTERACTIONs" Relationship="ERDSQLDatabaseProjectModel.FK__INTERACTI__INTER__46E78A0C" FromRole="INTERACTIONTYPE" ToRole="INTERACTIONs" ed:Guid="a1bd1cec-c777-438f-8524-0e50858d8115" />
+        </EntityType>
+        <EntityType Name="REVENUE" ed:Guid="e066fe3a-0491-406a-84c7-dae34dddc44f">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" ed:ValidateRequired="true" ed:Guid="03093cb6-9394-4f9a-a165-aef2b9b49877" />
+          <Property Name="CONSTITUENTID" Type="Guid" ed:ValidateRequired="false" ed:Guid="09599976-bdd3-49f3-974d-caf585260bb9" />
+          <Property Name="REVENUETYPEID" Type="Int32" ed:ValidateRequired="false" ed:Guid="5798901f-c3a8-4325-8073-827172c44f79" />
+          <Property Name="AMOUNT" Type="Decimal" ed:ValidateRequired="false" ed:Guid="1f9e044e-b284-40af-9729-7d99cccacbe8" />
+          <Property Name="DATERECEIVED" Type="DateTime" ed:ValidateRequired="false" ed:Guid="02d48be3-a278-483e-baf1-cd0a15cbc477" />
+          <NavigationProperty Name="CONSTITUENT" Relationship="ERDSQLDatabaseProjectModel.FK__REVENUE__CONSTIT__4222D4EF" FromRole="REVENUEs" ToRole="CONSTITUENT" ed:Guid="4a5c92cd-3b13-4a37-9402-c7f5f7c53b9e" />
+          <NavigationProperty Name="REVENUETYPE" Relationship="ERDSQLDatabaseProjectModel.FK__REVENUE__REVENUE__4316F928" FromRole="REVENUEs" ToRole="REVENUETYPE" ed:Guid="690dbbe0-f121-41d6-a2b4-e6ed9728f5f3" />
+        </EntityType>
+        <EntityType Name="REVENUETYPE" ed:Guid="210f7c5b-2c46-4b00-bc12-6cd53ad626cd">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="a1b5c2e6-4cb6-48d4-acc7-584d16e56a1a" />
+          <Property Name="NAME" Type="String" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="a36b9edf-f931-4667-a75a-aed7a9dca22d" />
+          <NavigationProperty Name="REVENUEs" Relationship="ERDSQLDatabaseProjectModel.FK__REVENUE__REVENUE__4316F928" FromRole="REVENUETYPE" ToRole="REVENUEs" ed:Guid="6a8ab1ce-b08b-4f20-8480-12697d35e9ce" />
+        </EntityType>
+        <Association Name="FK__ADDRESS__CONSTIT__3F466844" ed:Guid="b2e7079f-a3b9-427a-b355-3c3d8457d3ac">
+          <End Role="CONSTITUENT" Type="ERDSQLDatabaseProjectModel.CONSTITUENT" Multiplicity="0..1" />
+          <End Role="ADDRESSES" Type="ERDSQLDatabaseProjectModel.ADDRESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSTITUENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ADDRESSES">
+              <PropertyRef Name="CONSTITUENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EVENT__EVENT_CAT__49C3F6B7" ed:Guid="d52cd1c8-5f06-475a-959d-b79e264c83a6">
+          <End Role="EVENTCATEGORY" Type="ERDSQLDatabaseProjectModel.EVENTCATEGORY" Multiplicity="0..1" />
+          <End Role="EVENTs" Type="ERDSQLDatabaseProjectModel.EVENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EVENTCATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EVENTs">
+              <PropertyRef Name="EVENTCATEGORYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INTERACTI__CONST__45F365D3" ed:Guid="159428b9-8c24-437c-9d0d-297d071e611c">
+          <End Role="CONSTITUENT" Type="ERDSQLDatabaseProjectModel.CONSTITUENT" Multiplicity="0..1" />
+          <End Role="INTERACTIONs" Type="ERDSQLDatabaseProjectModel.INTERACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSTITUENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="INTERACTIONs">
+              <PropertyRef Name="CONSTITUENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INTERACTI__INTER__46E78A0C" ed:Guid="72a4fc4b-4949-46a5-81f6-9d55b5ef4222">
+          <End Role="INTERACTIONTYPE" Type="ERDSQLDatabaseProjectModel.INTERACTIONTYPE" Multiplicity="0..1" />
+          <End Role="INTERACTIONs" Type="ERDSQLDatabaseProjectModel.INTERACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INTERACTIONTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="INTERACTIONs">
+              <PropertyRef Name="INTERACTIONTYPEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__REVENUE__CONSTIT__4222D4EF" ed:Guid="20d8fc33-e0ea-40f7-a22e-551f4b976caa">
+          <End Role="CONSTITUENT" Type="ERDSQLDatabaseProjectModel.CONSTITUENT" Multiplicity="0..1" />
+          <End Role="REVENUEs" Type="ERDSQLDatabaseProjectModel.REVENUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONSTITUENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REVENUEs">
+              <PropertyRef Name="CONSTITUENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__REVENUE__REVENUE__4316F928" ed:Guid="a67b4f24-153f-43d1-9351-4899f1bd0934">
+          <End Role="REVENUETYPE" Type="ERDSQLDatabaseProjectModel.REVENUETYPE" Multiplicity="0..1" />
+          <End Role="REVENUEs" Type="ERDSQLDatabaseProjectModel.REVENUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REVENUETYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REVENUEs">
+              <PropertyRef Name="REVENUETYPEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- MSL content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ERDSQLDatabaseProjectEntitiesStoreContainer" CdmEntityContainer="ERDSQLDatabaseProjectEntities">
+          <EntitySetMapping Name="ADDRESSES">
+            <EntityTypeMapping TypeName="ERDSQLDatabaseProjectModel.ADDRESS">
+              <MappingFragment StoreEntitySet="ADDRESSES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CONSTITUENTID" ColumnName="CONSTITUENTID" />
+                <ScalarProperty Name="STREET" ColumnName="STREET" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONSTITUENTs">
+            <EntityTypeMapping TypeName="ERDSQLDatabaseProjectModel.CONSTITUENT">
+              <MappingFragment StoreEntitySet="CONSTITUENTs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EVENTs">
+            <EntityTypeMapping TypeName="ERDSQLDatabaseProjectModel.EVENT">
+              <MappingFragment StoreEntitySet="EVENTs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EVENTCATEGORYID" ColumnName="EVENT_CATEGORY_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="EVENTDATE" ColumnName="EVENT_DATE" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EVENTCATEGORIES">
+            <EntityTypeMapping TypeName="ERDSQLDatabaseProjectModel.EVENTCATEGORY">
+              <MappingFragment StoreEntitySet="EVENT_CATEGORIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INTERACTIONs">
+            <EntityTypeMapping TypeName="ERDSQLDatabaseProjectModel.INTERACTION">
+              <MappingFragment StoreEntitySet="INTERACTIONs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CONSTITUENTID" ColumnName="CONSTITUENTID" />
+                <ScalarProperty Name="INTERACTIONTYPEID" ColumnName="INTERACTION_TYPE_ID" />
+                <ScalarProperty Name="DATEOCCURRED" ColumnName="DATE_OCCURRED" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INTERACTIONTYPEs">
+            <EntityTypeMapping TypeName="ERDSQLDatabaseProjectModel.INTERACTIONTYPE">
+              <MappingFragment StoreEntitySet="INTERACTION_TYPEs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REVENUEs">
+            <EntityTypeMapping TypeName="ERDSQLDatabaseProjectModel.REVENUE">
+              <MappingFragment StoreEntitySet="REVENUEs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CONSTITUENTID" ColumnName="CONSTITUENTID" />
+                <ScalarProperty Name="REVENUETYPEID" ColumnName="REVENUE_TYPE_ID" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="DATERECEIVED" ColumnName="DATE_RECEIVED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REVENUETYPEs">
+            <EntityTypeMapping TypeName="ERDSQLDatabaseProjectModel.REVENUETYPE">
+              <MappingFragment StoreEntitySet="REVENUE_TYPEs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <edmx:Diagrams>
+      <Diagram Name="Main" />
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

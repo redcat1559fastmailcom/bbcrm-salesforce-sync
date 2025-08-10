@@ -61,5 +61,7 @@
   <ItemGroup>
     <None Include="BBCRM_Mock_Tables.sql" />
     <None Include="Lookup Tables.sql" />
+    <None Include="TSQLStagingSchema.sql" />
+    <None Include="StagingLoadTableProcedure.sql" />
   </ItemGroup>
 </Project>

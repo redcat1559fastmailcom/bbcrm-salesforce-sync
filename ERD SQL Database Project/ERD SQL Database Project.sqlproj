@@ -59,9 +59,11 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BBCRM_Mock_Tables.sql" />
+    <None Include="Create_BBCRM_Mock_Tables.sql" />
     <None Include="Lookup Tables.sql" />
     <None Include="TSQLStagingSchema.sql" />
-    <None Include="StagingLoadTableProcedure.sql" />
+    <None Include="Load_All_Staging_Tables.sql" />
+    <None Include="Create StagingLoadLog_table.sql" />
+    <None Include="Run_BBCRM_Staging_Load_w_ForceFullLoad.sql" />
   </ItemGroup>
 </Project>

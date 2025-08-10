@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>34273234-a952-4065-936e-a44875432529</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>LoadBBCRMTables.py</StartupFile>
+    <StartupFile>Load_BBCRM_Staging_Tables.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LoadBBCRMTables.py" />
+    <Compile Include="Load_BBCRM_Staging_Tables.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

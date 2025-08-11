@@ -9,8 +9,13 @@ This repository contains a robust, auditable ETL pipeline designed to migrate co
 - ✅ Staging architecture for repeatable, scalable ETL  
 - ✅ OAuth2 authentication and API integration with Salesforce  
 - ✅ Python utilities for bulk mock data generation and validation  
-- ✅ SSIS packages with built-in error handling and logging
+- ✅ SSIS packages
 
 ## 📁 Repository Structure
 
+/ssis-packages/         # SSIS .dtsx files for ETL orchestration
+/python-scripts/        # Python tools for data generation and integrity checks
+/sql-scripts/           # SQL scripts for staging table creation and sync logic
+/docs/                  # Technical documentation and schema diagrams
+README.md               # Project overview and setup instructions
 

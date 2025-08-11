@@ -65,5 +65,14 @@
     <None Include="Load_All_Staging_Tables.sql" />
     <None Include="Create StagingLoadLog_table.sql" />
     <None Include="Run_BBCRM_Staging_Load_w_ForceFullLoad.sql" />
+    <None Include="Incremental_Load_Procedure_Usage_Example.sql" />
+    <None Include="Get_Last_Successful_Sync_Time_Procedure.sql" />
+    <None Include="Purge_Staging_By_Batch_Procedure.sql" />
+    <None Include="Purge_StagingLoadLog_By_Age.sql" />
+    <None Include="Link_LoadBatchID_to_Salesforce_Sync_Log.sql" />
+    <None Include="Dashboard_Query_ETL_and_Sync_Summary_by_Batch.sql" />
+    <None Include="CreateSQLStagingTables.sql" />
+    <None Include="Add_LoadBatchID.sql" />
+    <None Include="Validate_BBCRM_Tables.sql" />
   </ItemGroup>
 </Project>

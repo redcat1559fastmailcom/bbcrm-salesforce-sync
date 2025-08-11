@@ -1,0 +1,650 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/9/2025 7:01:14 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LOGISMOS"
+  DTS:CreatorName="LOGISMOS\timot"
+  DTS:DTSID="{945389BD-C657-4BAC-931E-6E37D0CD968B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="BBCRM_Sync_to_Sales_Force"
+  DTS:PackageType="5"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{61B9B2BA-E4AB-4ABA-B159-9593F3ABDD8F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LOGISMOS.BBCRM_STAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2392FC4D-AF25-4152-874A-9BFB84D049E2}"
+      DTS:ObjectName="LOGISMOS.BBCRM_STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LOGISMOS;Initial Catalog=BBCRM_STAGING;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Salesforce 1]"
+      DTS:CreationName="ZS-SALESFORCE"
+      DTS:DTSID="{1506A5CF-72B4-4FBC-9C18-303024014294}"
+      DTS:ObjectName="Salesforce 1">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="ServiceUrl=;UserName=;Timeout=100;TokenUrl=;ClientId=3MVG9dAEux2v1sLvvo82fe1p3chCSzJo2I0ivKWkRkIeR1hF_2LBmIj5aSvez6zesoOA84A4Fwehjn2D1tC3t;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;ConnectionStringFile=;RetainSameConnection=True;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;AuthType=OAuth;ServiceType=Production;AllOrNone=False;AllowFieldTruncation=False;AllowSaveOnDuplicates=False;UseWebProxy=False;AuthUrl=;RedirectUrl=https://zappysys.com/oauth;EnablePkceCodeVerifier=True;Scopes=full offline_access;ApiVersion=;InstanceUrl=;OwnerChangeOptions="
+          ConnectByProxy="False">
+          <ClientSecret
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWmEJ/LqHTUWMdWfHxIdnDwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACH2xDht8FStJxVSOhAXLpc5Qwb3t7O61K3by6N+VcGlAAAAAAOgAAAAAIAACAAAADZyM1DQS1W0qfXqGe6z9AmjaHfJyGBtmNpaRVOPBXvVZAAAAC4jyOkCMHnU7+BqtT2CvnomUANqSLUMD4g0aFNVd0SSiOrg2qVswcZmm3IV4Ihu6XXdu0tElwYskqjAJ6uY6ec5DeoEa7VEHDDALUqxO7UV/pKVG7zHAhpT9x5ah9JjVXYqw6K4aoRT2nyHfeuZMVb/5J+daACPbuOMhdolOK5ffOmiPdAf63MNWjHcGtg3dZAAAAAdX1xIIlnPZnLF+rEaHIzc+wgmS0WIJWPAezNAJAf5x3dDZQLCkT7Gr5YGIZsHo6Akiw2zN+rLD8zlcnOf29GjA</ClientSecret>
+          <RefreshToken
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWmEJ/LqHTUWMdWfHxIdnDwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACG4b1SHIzysPYY16H9FuGTcJ5+CgF5Fndq0cPQyyX89gAAAAAOgAAAAAIAACAAAAAunjQdnBjyHLc/EObpS8fakdneY4LVq/wri8wBHrJobrAAAADvmEBToFtgsKXljtafp9pUrgBPSh2agciUZrBSpkilYMIEIhHtzgXa/mZNlmfbWOov1c/o3ZBnQuZ0+6V/xln6ngjBVkgebyWJcrzh+cKD17/TI7p8KSsMb6vcHMQczS83bJq4Y8nhhuA9bDBcov4dJ3ObValsYMmeYGpoec/y6xTGCzJupBYg4Tjg30q+0zFM7hA74ItkwbfonQiWrl/qO/RhtFuo114qTlIPW0DNQUAAAACphMDfsJPYqGY4f1vy87B8VrR3KMn5qvvCBAd9x/uwOEllBYx3gz5qKUwxh9cafJTI5ZqOP2pxpET7pM6voYmD</RefreshToken>
+          <AccessToken
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWmEJ/LqHTUWMdWfHxIdnDwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAASgb4Wt9TDQZsJSUta2GTOcoIA7pSZabo0x7S8gDVknwAAAAAOgAAAAAIAACAAAAB+TyqnlwFB+LEu6C4NsQh787Cq1QZLlNTiQ4jzPp4TFvAAAADRJg1cgUPJJrKmc/8M1JPAcTctImLo5ZwrKmZXBmRbutxsQocXUUvOYdtx5KRtGw4HBXnEfBj52x7xG5JRVtX289qXpLbqDhwVvA6nt134bBqyN4IsaJ1Fo8FiocCkAZ8PSUrhP7neA9Y/fZSLwEWudkSNmJvZ0JBUafwnh8qZPeGnpZpP3/4ma/4PPm3E1esde2Xcelhr18Hlt1dKuHMB89rM2BrhldBsfGDQ2SPUYHOrVHg0DJDg1pSjhouRzhlvwuaWsTdx9/GLffanzRR0LVvwmBY8AyLmxbmLMGgHxb+a8Jsfn1gQ0VQnnD3whupAAAAA0BvZYD1GrkA71iEcam2W+I/OzITpRY0odC2tMKFMhcQBPTQ9ROgmEhnj6+RZN4R963ToHvvZBAcDc3Dka3RsUA</AccessToken>
+        </ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sync_Constituenst"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{02CD7743-CDDA-4202-9C85-56F921750A75}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sync_Constituenst"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Sync_Constituenst\Salesforce Destination 1"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Salesforce Destination; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+              description="Salesforce destination can be used to Bulk Insert, Bulk Update, Bulk Delete and Bulk Upsert data to Salesforce in bulk."
+              name="Salesforce Destination 1"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Action you like to perform"
+                  expressionType="Notify"
+                  name="Operation"
+                  typeConverter="ZappySys.Crm.Salesforce.SalesforceDataWriteMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="ID of AssignmentRule you want to fire after new Lead or Case is created. This option is only valid for object type Lead and Case. To fire default assignment rule set UseDefaultAssignmentRule=true. To find out AssignmentRule ID, navigate to Assignment Rule page and get ID from URL (e.g. 01Q610000008e5x). For more information check this link https://help.salesforce.com/articleView?id=editing_assignment_rules.htm"
+                  expressionType="Notify"
+                  name="AssignmentRuleId"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="If you want to fire default Assignment rule after Case, Lead or Account, set this option to true. Either AssignmentRuleID or this option can be used. If you set this option to true and also specify AssignmentRuleID property then it may throw error"
+                  expressionType="Notify"
+                  name="UseDefaultAssignmentRule">false</property>
+                <property
+                  dataType="System.String"
+                  description="Key field based on which you want to perform Upsert action. This can be Id, External ID or IdLookup field type."
+                  expressionType="Notify"
+                  name="UpsertKeyField"
+                  typeConverter="ZappySys.PowerPack.Converters.KeyColumnsEditor,ZappySys.PowerPack160.UI,Version=1.0.0.0,Culture=neutral,PublicKeyToken=1903265a93eae502">BBCRM_ID__c</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable BULK API mode for large amount of data read / write. This mode may be slower for smaller set of data but if you have large amount of data then choose this mode to speedup data read/write operations."
+                  expressionType="Notify"
+                  name="EnableBulkApiMode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum rows per job. This option is useful to avoid memory related errors when EnableBulkApiMode=true. Reduce or increase this limit as per you need. For example if you getting OutOfMemory error then reduce this count."
+                  expressionType="Notify"
+                  name="MaxRowsPerJob">500000</property>
+                <property
+                  dataType="System.Int32"
+                  description="When you set EnableBulkApiMode=true by default all batches are executed in parallel mode on salesforce side, this might cause issue in some cases due to row locking. If you get error about row locks then try to change this to Serial mode see it helps. This option is ignored if you set BulkApiVersion=V2 (V1 API doesn't support this yet)."
+                  expressionType="Notify"
+                  name="ConcurrencyMode"
+                  typeConverter="ZappySys.Crm.Salesforce.ConcurrencyMode">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Bulk API Version to use for data processing. API V2 is very different than V1 so test performance with each version and use the one fits your need. V2 is better if you facing Locking issue. Default is v1."
+                  expressionType="Notify"
+                  name="BulkApiVersion"
+                  typeConverter="ZappySys.Crm.Salesforce.BulkAPiVersion">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                  expressionType="Notify"
+                  name="LoggingMode"
+                  typeConverter="ZappySys.PowerPack.Common.LoggingMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you enable this property it will prefix timestamp before Log messages."
+                  expressionType="Notify"
+                  name="PrefixTimestamp">false</property>
+                <property
+                  dataType="System.Null"
+                  expressionType="Notify"
+                  name="SelfRef"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.Boolean"
+                  description="Enable / Disable Response Output. Checking this option can remove unwanted warnings about unused Columns and many times speedup performance so if output is not needed set this option to True so its removed."
+                  name="DoNotCreateOutputs">false</property>
+                <property
+                  dataType="System.String"
+                  description="Target object name where you want like to write data."
+                  expressionType="Notify"
+                  name="TableName"
+                  typeConverter="ZappySys.PowerPack.Converters.TableEditor,ZappySys.PowerPack160.UI,Version=1.0.0.0,Culture=neutral,PublicKeyToken=1903265a93eae502">Constituent__c</property>
+                <property
+                  dataType="System.Int32"
+                  description="How many rows you want to send in each request.. This setting is ignored when EnableBulkApiMode=true. In BulkApi V1 mode batch size is fixed at 10000 rows per batch. In V2 we go by MaxRowsPerJob settings. "
+                  expressionType="Notify"
+                  name="BatchSize">200</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set this option to True if you wish to ignore fields if input value is NULL. By default target field is set to NULL if input value is NULL."
+                  expressionType="Notify"
+                  name="IgnoreFieldsIfInputNull">false</property>
+                <property
+                  dataType="System.String"
+                  description="Comma separated CRM entity field names which you like to set as NULL when input value is NULL. This option is ignored if IgnoreFieldsIfInputNull is not set to True."
+                  expressionType="Notify"
+                  name="FieldsToSetNullIfInputNull"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enables sending requests using multiple threads to speed up processing. Try to adjust MaxParallelThreads property to test performance gain. This property is ignored if you EnableBulkMode=true."
+                  expressionType="Notify"
+                  name="EnableParallelProcessing">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Max Parallel Threads to use to process requests. This property is only valid if you set EnableParallelProcessing=True. Valid values are 1 to 40. This property is ignored if you EnableBulkMode=true."
+                  expressionType="Notify"
+                  name="MaxParallelThreads">5</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">ZappySys.SalesforceDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Sync_Constituenst\Salesforce Destination 1.Connections[ZS-SALESFORCE]"
+                  connectionManagerID="Package.ConnectionManagers[Salesforce 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Salesforce 1]"
+                  description="Runtime connection for this component"
+                  name="ZS-SALESFORCE" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="SalesforceDestinationInput"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].Columns[BBCRM_ID]"
+                      cachedDataType="guid"
+                      cachedName="BBCRM_ID"
+                      externalMetadataColumnId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[BBCRM_ID__c]"
+                      lineageId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].Columns[BBCRM_ID]" />
+                    <inputColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[First_Name__c]"
+                      lineageId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[Last_Name__c]"
+                      lineageId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].Columns[LastName]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      name="CreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[CreatedById]"
+                      dataType="wstr"
+                      length="18"
+                      name="CreatedById">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          expressionType="Notify"
+                          name="ReferenceTo">User</property>
+                        <property
+                          dataType="System.String"
+                          expressionType="Notify"
+                          name="ExternalIdFieldName"></property>
+                        <property
+                          dataType="System.String"
+                          expressionType="Notify"
+                          name="RelationshipName">CreatedBy</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[Id]"
+                      dataType="wstr"
+                      length="18"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[OwnerId]"
+                      dataType="wstr"
+                      length="18"
+                      name="OwnerId">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          expressionType="Notify"
+                          name="ReferenceTo">Group,User</property>
+                        <property
+                          dataType="System.String"
+                          expressionType="Notify"
+                          name="ExternalIdFieldName"></property>
+                        <property
+                          dataType="System.String"
+                          expressionType="Notify"
+                          name="RelationshipName">Owner</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="80"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[LastModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="LastModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[LastModifiedById]"
+                      dataType="wstr"
+                      length="18"
+                      name="LastModifiedById">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          expressionType="Notify"
+                          name="ReferenceTo">User</property>
+                        <property
+                          dataType="System.String"
+                          expressionType="Notify"
+                          name="ExternalIdFieldName"></property>
+                        <property
+                          dataType="System.String"
+                          expressionType="Notify"
+                          name="RelationshipName">LastModifiedBy</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[SystemModstamp]"
+                      dataType="dbTimeStamp"
+                      name="SystemModstamp" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[LastActivityDate]"
+                      dataType="dbDate"
+                      name="LastActivityDate" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[LastViewedDate]"
+                      dataType="dbTimeStamp"
+                      name="LastViewedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[LastReferencedDate]"
+                      dataType="dbTimeStamp"
+                      name="LastReferencedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[BBCRM_ID__c]"
+                      dataType="wstr"
+                      length="36"
+                      name="BBCRM_ID__c" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[Last_Name__c]"
+                      dataType="wstr"
+                      length="100"
+                      name="Last_Name__c" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput].ExternalColumns[First_Name__c]"
+                      dataType="wstr"
+                      length="100"
+                      name="First_Name__c" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[SalesforceDestination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="SalesforceDestination Error Output"
+                  synchronousInputId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[SalesforceDestination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[SalesforceDestination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[SalesforceDestination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[SalesforceDestination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[SalesforceDestination Error Output].Columns[ErrorColumnName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="128"
+                      lineageId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[SalesforceDestination Error Output].Columns[ErrorColumnName]"
+                      name="ErrorColumnName" />
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[SalesforceDestination Error Output].Columns[ErrorMessage]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[SalesforceDestination Error Output].Columns[ErrorMessage]"
+                      name="ErrorMessage" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[New Records Output]"
+                  exclusionGroup="1"
+                  name="New Records Output"
+                  synchronousInputId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[New Records Output].Columns[CrmRecordId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      lineageId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[New Records Output].Columns[CrmRecordId]"
+                      name="CrmRecordId" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[Updated Records Output]"
+                  exclusionGroup="1"
+                  name="Updated Records Output"
+                  synchronousInputId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[Updated Records Output].Columns[CrmRecordId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      lineageId="Package\Sync_Constituenst\Salesforce Destination 1.Outputs[Updated Records Output].Columns[CrmRecordId]"
+                      name="CrmRecordId" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Sync_Constituenst\Stg_Constituent"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Stg_Constituent"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stg_BBCRM_Mock_Constituent]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Sync_Constituenst\Stg_Constituent.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LOGISMOS.BBCRM_STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[LOGISMOS.BBCRM_STAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].Columns[BBCRM_ID]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].ExternalColumns[BBCRM_ID]"
+                      lineageId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].Columns[BBCRM_ID]"
+                      name="BBCRM_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      length="50"
+                      lineageId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      length="50"
+                      lineageId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].ExternalColumns[BBCRM_ID]"
+                      dataType="guid"
+                      name="BBCRM_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="100"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].ExternalColumns[DateChanged]"
+                      dataType="dbTimeStamp"
+                      name="DateChanged" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].ExternalColumns[LoadTimestamp]"
+                      dataType="dbTimeStamp"
+                      name="LoadTimestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output].ExternalColumns[LoadBatchID]"
+                      dataType="guid"
+                      name="LoadBatchID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Error Output].Columns[BBCRM_ID]"
+                      dataType="guid"
+                      lineageId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Error Output].Columns[BBCRM_ID]"
+                      name="BBCRM_ID" />
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Sync_Constituenst.Paths[OLE DB Source Output]"
+              endId="Package\Sync_Constituenst\Salesforce Destination 1.Inputs[SalesforceDestinationInput]"
+              name="OLE DB Source Output"
+              startId="Package\Sync_Constituenst\Stg_Constituent.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Sync_Constituenst"
+          TopLeft="126,131" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sync_Constituenst">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Sync_Constituenst\Stg_Constituent"
+          TopLeft="188,85" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Sync_Constituenst\Salesforce Destination 1"
+          TopLeft="174,191" />
+        <EdgeLayout
+          Id="Package\Sync_Constituenst.Paths[OLE DB Source Output]"
+          TopLeft="269.75,127">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sync_Constituenst\Stg_Constituent">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

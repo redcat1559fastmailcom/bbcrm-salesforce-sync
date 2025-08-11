@@ -26,26 +26,26 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">LOGISMOS</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWmEJ/LqHTUWMdWfHxIdnDwAAAAACAAAAAAAQZgAAAAEAACAAAAADFwv6duCTBm+hMJyqJdf5Ixi0PeJKbvxUxDktlE2CeAAAAAAOgAAAAAIAACAAAADJZaMIGtud7bXhuIyfgcSI3fCFQijuJckpf+Ib3fIMeZAAAAALcyWSmAg50CxrPZNMp8PKi561734icZWFgd52UWAoZUsheREuiObgdlQCtDGwiE1FOyC5zwx7w1AKRPlXIz04koxoLqGCTvoS9GUH4vVj7LL7d07d/IIzGBuHF+fUVUG4gBqF1jx4ZKH56locvg/9Lyaa909RY+WUc4w/fvXlxeF8MFDkC4d/8lLdT2wZZltAAAAAroCgLR2ny7vqO00wtbZeKkwfBSIFQslWPrQQjBi6P+sBtZ3Rgm9D8/WEfaL1Ih0FIOKDXvVeMw2g70k3dLX+sQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWmEJ/LqHTUWMdWfHxIdnDwAAAAACAAAAAAAQZgAAAAEAACAAAADN1cSEhDrLmdbWtyGpWYKqIYLRA8crdMv8RifIY0/qcwAAAAAOgAAAAAIAACAAAAApECADpMLCgtbQNpzhS43gfhj0fVQV0KUYXxspNHzf4JAAAADGkyX5vMZspqx/1Yx1AN9dFR+msTlyzo3K8YTG4COWD5rrDVleKOkAknEgfRQXEmYLTJTdEAY1Z+BbmJJ6Stcer91vqaxq11ZZFgAN3p4kaRiDMc0J4pqZN5KDShhnH1loErH41q9pywXXV/UUlloOVU2bbvWO/pdguVBQc/uELZUijOdJNi+o4hBRGbgKmTxAAAAAgZ/eZpbCFialDKTtqZJxPe5xG+TMhIFj2F6grX1DhhCo1wum8QEqXM8zh2SymZcfYqCNnIVcuxE2EuMGH4Wz0g==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="BBCRM_Sync_to_Sales_Force.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Constituent_Upsert.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters />
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="BBCRM_Sync_to_Sales_Force.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="Constituent_Upsert.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{945389BD-C657-4BAC-931E-6E37D0CD968B}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">BBCRM_Sync_to_Sales_Force</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{3F4EB455-935C-447C-9020-5EB7B6EBAC28}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Constituent_Upsert</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">18</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">21</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{B4F6187B-3554-4394-B6B9-D7C133D10BB9}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B8BC658B-2D80-470B-8225-215EE3073927}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

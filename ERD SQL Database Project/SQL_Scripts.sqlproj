@@ -74,5 +74,6 @@
     <None Include="CreateSQLStagingTables.sql" />
     <None Include="Add_LoadBatchID.sql" />
     <None Include="Validate_BBCRM_Tables.sql" />
+    <None Include="SOQLsql.sql" />
   </ItemGroup>
 </Project>
